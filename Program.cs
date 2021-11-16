@@ -63,6 +63,7 @@ namespace Homework_5_Source_Task_4
             {
                 Console.WriteLine("Введите последовательность чисел, разделённых пробелом\n");
                 str = Console.ReadLine();
+                strWithoutSpaces = str.Replace(" ", "");
                 flag = int.TryParse(strWithoutSpaces, out tmp);
             }
             
