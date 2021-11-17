@@ -19,9 +19,26 @@ namespace Homework_5_Source_Task_4
             {
                 int a = iArr[i + 1] - iArr[i];
                 int a1 = iArr[i + 2] - iArr[i + 1];
+                int g;
+                int g1;
 
-                int g = iArr[i + 1] / iArr[i];
-                int g1 = iArr[i + 2] / iArr[i + 1];
+                try
+                {
+                    g = iArr[i + 1] / iArr[i];
+                } catch (DivideByZeroException)
+                {
+                    return 0;
+                }
+
+                try
+                {
+                    g1 = iArr[i + 2] / iArr[i + 1];
+                }
+                catch (DivideByZeroException)
+                {
+                    return 0;
+                }
+                
 
                 if ((a1 - a) != 0)
                 {
