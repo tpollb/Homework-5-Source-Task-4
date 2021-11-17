@@ -19,32 +19,18 @@ namespace Homework_5_Source_Task_4
             {
                 int a = iArr[i + 1] - iArr[i];
                 int a1 = iArr[i + 2] - iArr[i + 1];
-                int g;
-                int g1;
-
-                try
-                {
-                    g = iArr[i + 1] / iArr[i];
-                } catch (DivideByZeroException)
-                {
-                    return 0;
-                }
-
-                try
-                {
-                    g1 = iArr[i + 2] / iArr[i + 1];
-                }
-                catch (DivideByZeroException)
-                {
-                    return 0;
-                }
-                
+                int g = iArr[i + 1] * iArr[i + 1];
+                int g1 = iArr[i] * iArr[i + 2];
 
                 if ((a1 - a) != 0)
                 {
                     flagAr++;
                 }
                 if ((g1 - g) != 0)
+                {
+                    flagGeo++;
+                }
+                if (iArr[i] == 0)
                 {
                     flagGeo++;
                 }
@@ -78,15 +64,30 @@ namespace Homework_5_Source_Task_4
 
             while (flag == false)
             {
-                Console.WriteLine("Введите последовательность чисел, разделённых пробелом\n");
+                Console.WriteLine("Введите последовательность чисел, свыше 3х элементов разделённых пробелом\n");
                 str = Console.ReadLine();
                 strWithoutSpaces = str.Replace(" ", "");
                 flag = int.TryParse(strWithoutSpaces, out tmp);
             }
             
             int[] iArr = str.Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            flag = false;
+
+            while (iArr.Length < 3)
+            {
+                while (flag == false)
+                {
+                    Console.WriteLine("Введите последовательность чисел, свыше 3х элементов разделённых пробелом\n");
+                    str = Console.ReadLine();
+                    strWithoutSpaces = str.Replace(" ", "");
+                    flag = int.TryParse(strWithoutSpaces, out tmp);
+                }
+
+                iArr = str.Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            }
 
             int a = IsArOrGeoProg(iArr);
+
             if (a == 1)
             {
                 Console.WriteLine("Последовательность чисел является арифметической прогрессией\n");
@@ -99,7 +100,8 @@ namespace Homework_5_Source_Task_4
             }
 
 
-            Console.ReadKey();
+
+                Console.ReadKey();
         }
     }
 }
